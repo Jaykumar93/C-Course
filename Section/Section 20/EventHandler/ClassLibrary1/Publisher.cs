@@ -20,7 +20,11 @@ namespace ClassLibrary1
             //step 2: raise event
             if (this.myEvent != null)
             {
-                CustomEventArgs customEventArgs = new CustomEventArgs() { a = a, b = b };
+                CustomEventArgs customEventArgs = new CustomEventArgs() 
+                { 
+                    a = a, 
+                    b = b 
+                };
                 this.myEvent(sender, customEventArgs);
             }
         }

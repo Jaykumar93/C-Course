@@ -8,8 +8,8 @@ namespace EventsExample
     {
         static void Main()
         {
-            Program p = new Program();
-            p.DoWork();
+            Program program = new Program();
+            program.DoWork();
 
             Console.ReadKey();
         }
@@ -20,9 +20,9 @@ namespace EventsExample
             Publisher publisher = new Publisher();
 
             //handle the event (or) subscribe to event
-            publisher.myEvent += (sender, e) =>
+            publisher.myEvent += (sender, eventHandler) =>
             {
-                int c = e.a + e.b;
+                int c = eventHandler.a + eventHandler.b;
                 Console.WriteLine(c);
             };
 

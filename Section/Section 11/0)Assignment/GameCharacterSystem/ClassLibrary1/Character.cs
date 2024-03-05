@@ -31,6 +31,6 @@ public class Character
     }
     public virtual void Defend()
     {
-        System.Console.WriteLine($" => {name} defends. And had No Damage");
+        
     }
 }

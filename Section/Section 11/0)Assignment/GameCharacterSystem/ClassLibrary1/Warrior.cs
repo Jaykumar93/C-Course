@@ -23,8 +23,7 @@ public class Warrior : Character
     }
 
         public override void Defend()
-    {
-        defense += 5;
-        Console.WriteLine($"\n{name} defended and gains 5 defense because of special Warrior Skill.");
-    }
+        {
+        
+        }
 }

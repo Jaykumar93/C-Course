@@ -1,37 +1,35 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
+using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Start listening for incoming connections on port 1234
-        TcpListener server = new TcpListener(IPAddress.Any, 1234);
-        server.Start();
+        // Create a SortedList
+        SortedList<int, string> sortedList = new SortedList<int, string>();
+        sortedList.Add(3, "Three");
+        sortedList.Add(1, "One");
+        sortedList.Add(2, "Two");
 
-        Console.WriteLine("Server started. Waiting for a connection...");
+        // Convert the SortedList to a Dictionary
+        Dictionary<int, string> dictionary = ConvertSortedListToDictionary(sortedList);
 
-        // Accept incoming client connection
-        TcpClient client = server.AcceptTcpClient();
-        Console.WriteLine("Client connected.");
-
-        // Get a network stream for reading and writing
-        NetworkStream stream = client.GetStream();
-
-        // Receive and display messages from the client
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+        // Display the Dictionary
+        foreach (var kvp in dictionary)
         {
-            string message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
-            Console.WriteLine($"Client: {message}");
+            Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
         }
 
-        // Clean up
-        stream.Close();
-        client.Close();
-        server.Stop();
+        Console.ReadKey();
+    }
+
+    static Dictionary<TKey, TValue> ConvertSortedListToDictionary<TKey, TValue>(SortedList<TKey, TValue> sortedList)
+    {
+        Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
+        foreach (var kvp in sortedList)
+        {
+            dictionary.Add(kvp.Key, kvp.Value);
+        }
+        return dictionary;
     }
 }

@@ -9,10 +9,10 @@ namespace IEnumerableExample
         static void Main()
         {
             //create a collection
-            IEnumerable<string> messages;
-            messages = new List<string>() { "How are you", "Have a great day", "Thanks for meeting" };
+            IEnumerable<string> messages = new List<string>() { "How are you", "Have a great day", "Thanks for meeting" };
 
-            //foreach
+
+                    //foreach
             Console.WriteLine("IEnumerable:");
             foreach (string item in messages)
             {

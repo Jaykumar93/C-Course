@@ -197,11 +197,79 @@ namespace LINQAssignment
                     Console.WriteLine($"Product ID:{orderDetail.ProductID} , Quantity: {orderDetail.TotalQuantity}, Revenue:{orderDetail.TotalRevenue}");
                 }
 
+            Console.WriteLine("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
             //Query 6: The top 5 customers by the total amount of money they have spent, along with the number of orders they have placed and the average order amount
 
 
+            var query6part1 = from customer in customers
+                          join order in orders on customer.CustomerID equals order.CustomerID
+                          join orderDetail in orderDetails on order.OrderID equals orderDetail.OrderID
+                          join product in products on orderDetail.ProductID equals product.ProductID
+                          select new
+                          {
+                              CustomerID = customer.CustomerID,
+                              ProductID = product.ProductID,
+                              ProductName = product.ProductName,
+                              ProductPrice = product.UnitPrice,
+                              OrderId = orderDetail.OrderID,
+                              Quantity = orderDetail.Quantity,
+                              Discount = orderDetail.Discount
+                          };
+            var query6 = query6part1.GroupBy(g => g.CustomerID)
+                                .Select(g => new
+                                {
+                                    CustomerID = g.Key,
+                                    TotalOrder = g.GroupBy(x=>x.OrderId).Count(),
+                                    TotalAmount = g.Sum(x =>( x.ProductPrice * x.Quantity)-x.Discount),
+                                    AverageByOrder = (g.Sum(x => (x.ProductPrice * x.Quantity) - x.Discount)) / g.GroupBy(x => x.OrderId).Count(),
+
+                                }).ToList().OrderByDescending(x=>x.TotalAmount).Take(4);
+
+
+
+            foreach (var Details in query6)
+            {
+                Console.WriteLine($"Customers ID:{Details.CustomerID} || Total Order: {Details.TotalOrder} || Total Amount:{Details.TotalAmount} || AverageCostByOrder:{Details.AverageByOrder}");
+            }
+
+            //foreach (var group in query2)
+            //{
+            //    Console.WriteLine($"CustomerID {group.Key}:");
+            //    foreach (var customer in group)
+            //    {
+            //        Console.WriteLine($"--{customer.ProductID}--{customer.OrderId}--{customer.Quantity}--{customer.ProductPrice}");
+            //    }
+            //    Console.WriteLine();
+            //}
 
             //Query 7: The most popular product by the number of times it has been ordered
+
+            var query7 = (from OrderDetail in orderDetails
+                          join Product in products
+                          on OrderDetail.ProductID equals Product.ProductID
+                          select new
+                          {
+                              productID = Product.ProductID,
+                              productName = Product.ProductName,
+                              quantity = OrderDetail.Quantity,
+                              orderID = OrderDetail.OrderID
+                          }).GroupBy(x => x.productID)
+                          .Select(g=> new
+                          {
+                              ProductName = g.Key,
+                              Quantity = g.Sum(x=>x.quantity)
+                          }).OrderByDescending(Product=>Product.Quantity);
+
+            
+
+            
+                foreach (var item in query7)
+                {
+                    Console.WriteLine($"  Product Name: {item.ProductName}, Quantity: {item.Quantity}");
+                }
+            
+
 
             Console.ReadKey();
         }

@@ -29,6 +29,10 @@ namespace FileStreamExample
 
             filestream2.Read(byteRead, 0, (int)filestream2.Length);
 
+
+            string content3 = System.Text.ASCIIEncoding.ASCII.GetString(byteRead);
+
+            fileStream.Close();
             Console.ReadKey();
 
         }

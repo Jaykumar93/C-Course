@@ -90,7 +90,7 @@ namespace LINQAssignment
                 new Order { OrderID = 7, CustomerID = 1, OrderDate = new DateTime(2022, 7, 1), ShippedDate = new DateTime(2022, 7, 10) },
                 new Order { OrderID = 8, CustomerID = 2, OrderDate = new DateTime(2022, 8, 1), ShippedDate = new DateTime(2022, 8, 10) },
                 new Order { OrderID = 9, CustomerID = 3, OrderDate = new DateTime(2022, 9, 1), ShippedDate = new DateTime(2022, 9, 10) },
-                new Order { OrderID = 10, CustomerID = 4, OrderDate = new DateTime(2022, 10, 1), ShippedDate = new DateTime(2022, 10, 10) }
+                new Order {OrderID = 10, CustomerID = 4, OrderDate = new DateTime(2022, 10, 1),ShippedDate = new DateTime(2022, 10, 10) }
                 };
 
             // define a list of order details
@@ -193,9 +193,9 @@ namespace LINQAssignment
 
             // Display the results
             foreach (var orderDetail in totalRevenue)
-                {
-                    Console.WriteLine($"Product ID:{orderDetail.ProductID} , Quantity: {orderDetail.TotalQuantity}, Revenue:{orderDetail.TotalRevenue}");
-                }
+            {
+                Console.WriteLine($"Product ID:{orderDetail.ProductID} , Quantity: {orderDetail.TotalQuantity}, Revenue:{orderDetail.TotalRevenue}");
+            }
 
             Console.WriteLine("\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 

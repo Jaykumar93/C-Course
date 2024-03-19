@@ -12,7 +12,7 @@ namespace FileInfoExample
             string destPath2 = @"C:\Users\Coditas-Admin\Documents\C #\Section\Section 27\TempFileCreated\somethingelse.txt";
 
             FileInfo fileInfo = new FileInfo(filePath);
-
+            File.WriteAllText(destPath, "My name is jay");
             //Create()
             fileInfo.Create().Close();
             Console.WriteLine("japan.txt created");

@@ -1,0 +1,22 @@
+
+
+Exception on 3/20/2024 10:06:31 AM
+System.ArgumentNullException
+
+Stack Trace:
+   at StackTraceExample.FundsTransfer.Transfer(BankAccount sourceAccount, BankAccount destinationAccount, Double amount) in C:\Users\Coditas-Admin\Documents\C #\Section\Section 28\Exception Logger\ExceptionLoggerExample\Program.cs:line 83
+   at StackTraceExample.Program.Main() in C:\Users\Coditas-Admin\Documents\C #\Section\Section 28\Exception Logger\ExceptionLoggerExample\Program.cs:line 98
+
+Message:
+You have supplied null value to 'destinationAccount' parameter
+
+
+Exception on 3/20/2024 10:07:01 AM
+StackTraceExample.InsufficientFundsException
+
+Stack Trace:
+   at StackTraceExample.FundsTransfer.Transfer(BankAccount sourceAccount, BankAccount destinationAccount, Double amount) in C:\Users\Coditas-Admin\Documents\C #\Section\Section 28\Exception Logger\ExceptionLoggerExample\Program.cs:line 69
+   at StackTraceExample.Program.Main() in C:\Users\Coditas-Admin\Documents\C #\Section\Section 28\Exception Logger\ExceptionLoggerExample\Program.cs:line 98
+
+Message:
+Insufficient balance in the source account. The current balance is 1000. But the amount to transfer is 3000

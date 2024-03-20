@@ -17,7 +17,7 @@ namespace ArgumentNullExceptionExample
             {
                 sourceAccount.CurrentBalance -= amount;
             }
-            catch (NullReferenceException) //it catches NullReferenceException
+            catch (NullReferenceException ex) //it catches NullReferenceException
             {
                 throw new ArgumentNullException("sourceAccount", "You have supplied null value to 'sourceAccount' parameter"); //it throws the same object of ArgumentNullException
             }

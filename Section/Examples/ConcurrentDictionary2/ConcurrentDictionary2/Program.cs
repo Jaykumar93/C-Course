@@ -6,7 +6,7 @@ class CustomDictionary<TKey, TValue>
 {
     private Dictionary<TKey, TValue> dictionary = new Dictionary<TKey, TValue>();
 
-    public void Write(object obj)
+    public void Write(object obj)   
     {
         var parameters = (Tuple<TKey, TValue>)obj;
         dictionary[parameters.Item1] = parameters.Item2;

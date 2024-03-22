@@ -5,7 +5,7 @@ namespace TaskRun
 {
     class UpCounter
     {
-        public long CountUp(int count)
+        public SumData CountUp(int count)
         {
             long sum = 0;
             Console.WriteLine("\n Count-Up starts");
@@ -13,9 +13,10 @@ namespace TaskRun
             {
                 Console.Write($"i = {i}, ");
                 sum += i;
+                Task.Delay(100).Wait();    
             }
             Console.WriteLine("\nCount-Down ends");
-            return sum;
+            return new SumData() { Sum = sum};
         }
     }
     class DownCounter
@@ -44,22 +45,35 @@ namespace TaskRun
             DownCounter downCounter = new DownCounter();
             
 
-            Task<long> task1 = Task.Factory.StartNew(() => {
+            Task<SumData> task1 = Task.Factory.StartNew(() => {
                 return upCounter.CountUp(20);
+            });
+
+            task1.ContinueWith((antecedent) =>
+            {
+                Console.WriteLine($"Result of the Count_Up method ={task1.Result.Sum} ");
             });
             Task<long> task2 = Task.Factory.StartNew(() => {
                 return downCounter.CountDown(20);
             });
 
-           
+            task2.ContinueWith((antecedent) =>
+            {
+                Console.WriteLine($"Result of the Count_Down method ={task2.Result} ");
+            });
 
-            Task.WaitAll(task1, task2);
-            Console.WriteLine($"Result of the Count_Up method ={task1.Result} ");
-            Console.WriteLine($"Result of the Count_Down method ={task2.Result} ");
+            //Task.WaitAny(task1, task2);
+            //Task.WaitAll(task1,task2);
+
+
+            
+            
             Console.ReadKey();
 
         }
-       
-
+    }
+    class SumData
+    {
+        public long Sum { get; set; }
     }
 }

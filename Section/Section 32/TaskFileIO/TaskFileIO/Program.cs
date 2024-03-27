@@ -3,26 +3,29 @@
 
     class FileWriter
     {
-        public Task WriteFile(string fileName, string content)
+        public async Task WriteFile(string fileName, string content)
         {
             StreamWriter writer = new StreamWriter(fileName);
-            Task writerTask = writer.WriteAsync(content);
+           // Task writerTask = writer.WriteAsync(content);
+           // await writerTask;
 
+            await writer.WriteAsync(content);
             writer.Close();
-            return writerTask;
 
         }
     }
     class FileReader
     {
-        public Task<string> ReadFile(string fileName)
+        public async Task<string> ReadFile(string fileName)
         {
             StreamReader reader = new StreamReader(fileName);
-            Task<string> writerTask = reader.ReadToEndAsync();
-
+           // Task<string> readerTask = reader.ReadToEndAsync();
+          // string content =  await readerTask;
+           
+            
+           string content =  await reader.ReadToEndAsync();
             reader.Close();
-            return writerTask;
-
+            return content;
         }
     }
   
@@ -49,6 +52,8 @@
             Console.WriteLine($"\nFile content : " +
                 $"{readerTask.Result}");
 
+            Console.ReadKey();
         }
+
     }
 }

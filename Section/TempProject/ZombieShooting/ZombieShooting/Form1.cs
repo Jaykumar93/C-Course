@@ -173,9 +173,7 @@ namespace ZombieShooting
             shield.BringToFront();
             Player.BringToFront();
         }
-
-        
-
+            
         private void gameEngine(object sender, EventArgs e)
         {
             if (playerHealth > 1) // if player health is greater than 1
@@ -292,7 +290,7 @@ namespace ZombieShooting
                         }
                         else
                             playerHealth -= 0.50; // if the zombie hits the player then we decrease the health by 1
-                    }
+                    }   
                     
                     //move zombie towards the player picture box
                     if (((PictureBox)x).Left > Player.Left)
